@@ -48,7 +48,7 @@ app.get("/addstudent", (req, res) => {
     const { name, phone, email, gender } = req.query
 
     // Sanitization XSS...
-    let qry = "select * from test where emailid=? or phoneno=?";
+    let qry = "select * from test where email=? or phone=?";
     mysql.query(qry, [email, phone], (err, results) => {
         if (err)
             throw err
@@ -83,7 +83,7 @@ app.get("/searchstudent", (req, res) => {
 
     const { phone } = req.query;
 
-    let qry = "select * from test where phoneno=?";
+    let qry = "select * from test where phone=?";
     mysql.query(qry, [phone], (err, results) => {
         if (err) throw err
         else {
@@ -103,7 +103,7 @@ app.get("/updatesearch", (req, res) => {
 
     const { phone } = req.query;
 
-    let qry = "select * from test where phoneno=?";
+    let qry = "select * from test where phone=?";
     mysql.query(qry, [phone], (err, results) => {
         if (err) throw err
         else {
@@ -123,7 +123,7 @@ app.get("/updatestudent", (req, res) => {
     // fetch data
 
     const { phone, name, gender } = req.query;
-    let qry = "update test set username=?, gender=? where phoneno=?";
+    let qry = "update test set name=?, gender=? where phone=?";
 
     mysql.query(qry, [name, gender, phone], (err, results) => {
         if (err) throw err
@@ -143,7 +143,7 @@ app.get("/removestudent", (req, res) => {
 
     const { phone } = req.query;
 
-    let qry = "delete from test where phoneno=?";
+    let qry = "delete from test where phone=?";
     mysql.query(qry, [phone], (err, results) => {
         if (err) throw err
         else {
